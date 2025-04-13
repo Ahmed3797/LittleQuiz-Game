@@ -9,6 +9,7 @@ const Home: React.FC = () => {
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
         title="Game Instructions"
+        closeButton={true}
       >
         <div>
           <ol className="list-decimal pl-6 space-y-2 text-gray-700">
