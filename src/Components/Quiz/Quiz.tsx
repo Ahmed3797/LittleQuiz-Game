@@ -16,6 +16,7 @@ const Quiz = () => {
   const { nextQuestion, currentQuestions, startAgain } = useQuestions();
   const [que, setQue] = useState<Question | undefined>();
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const[questionRemaining,setQuestionsRemaining] =useState(6)
 
   const checkAnswer = (answer: AnswerOption) => {
     if (que?.answer === answer.value) {
@@ -27,10 +28,11 @@ const Quiz = () => {
 
   const handleNext = () => {
     const question = nextQuestion();
+    setQuestionsRemaining(questionRemaining-1)
     setQue(question || undefined);
   };
 
-  if (currentQuestions.length <= 0) {
+  if (questionRemaining <0 ) {
     return (
       <div className="text-black text-center">
         <h1 className="text-7xl mb-4">You Won</h1>
@@ -49,7 +51,7 @@ const Quiz = () => {
       <div className="text-black text-center">
         <button
           onClick={handleNext}
-          className="text-7xl border-2 rounded-xl p-8 cursor-pointer hover:bg-[#a2ea29] hover:text-white transition duration-300 hover:border-[#a2ea29]"
+          className="text-5xl md:text-7xl border-2 rounded-xl p-8 cursor-pointer hover:bg-[#a2ea29] hover:text-white transition duration-300 hover:border-[#a2ea29]"
         >
           Start Game
         </button>
@@ -59,10 +61,10 @@ const Quiz = () => {
 
   return (
     <div className="w-[80%] md:w-[40%] rounded border p-4 bg-white text-black mx-auto">
-      <QuestionDisplay question={que} remaining={currentQuestions.length + 1} />
+      <QuestionDisplay question={que} remaining={questionRemaining} />
       <AnswerList options={Answers} onSelect={checkAnswer} />
 
-      <LayoutModal isOpen={isOpen} onClose={() => setIsOpen(false)} title="Wrong Answer!">
+      <LayoutModal isOpen={isOpen} onClose={() => setIsOpen(false)} closeButton={false} title="Wrong Answer!">
         <div className="flex flex-col items-center gap-4">
           <p className="text-xl text-red-600">Oops! That was incorrect.</p>
           <button

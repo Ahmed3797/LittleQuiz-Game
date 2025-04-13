@@ -19,6 +19,7 @@ export interface LayoutModalProps {
   onClose: () => void;
   title: string;
   children: ReactNode;
+  closeButton:boolean
 }
 
 export interface Question {

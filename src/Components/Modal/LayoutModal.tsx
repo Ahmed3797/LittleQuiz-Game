@@ -9,14 +9,17 @@ const LayoutModal: FC<LayoutModalProps> = ({
   onClose,
   title,
   children,
+  closeButton=true,
 }) => {
   return (
     <Modal
       isOpen={isOpen}
       onRequestClose={onClose}
-      className="bg-white rounded-xl w-full max-w-2xl p-6 mx-4 shadow-lg relative"
-      overlayClassName="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
+      shouldCloseOnOverlayClick={false}
+      className="bg-white rounded-xl w-full max-w-2xl p-6 mx-4 shadow-lg relative outline-0"
+      overlayClassName="fixed inset-0  bg-[#151c2b] bg-opacity-50 flex justify-center items-center z-50"
     >
+      { closeButton && 
       <div className="flex justify-between items-center border-b pb-2 mb-4">
         <h2 className="text-xl font-semibold">{title}</h2>
         <button
@@ -25,7 +28,7 @@ const LayoutModal: FC<LayoutModalProps> = ({
         >
           ×
         </button>
-      </div>
+      </div> }
       <div>{children}</div>
     </Modal>
   );
