@@ -37,7 +37,10 @@ const Quiz = () => {
       <div className="text-black text-center">
         <h1 className="text-7xl mb-4">You Won</h1>
         <button
-          onClick={startAgain}
+          onClick={()=>{
+            startAgain()
+            setQuestionsRemaining(6)
+          }}
           className="bg-green-600 text-white py-2 px-4 rounded"
         >
           Restart Again
