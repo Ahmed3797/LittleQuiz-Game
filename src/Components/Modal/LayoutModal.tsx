@@ -9,7 +9,7 @@ const LayoutModal: FC<LayoutModalProps> = ({
   onClose,
   title,
   children,
-  closeButton=true,
+  closeButton,
 }) => {
   return (
     <Modal
