@@ -22,6 +22,7 @@ const Quiz = () => {
     if (que?.answer === answer.value) {
       handleNext();
     } else {
+      setQuestionsRemaining(6)
       setIsOpen(true);
     }
   };
